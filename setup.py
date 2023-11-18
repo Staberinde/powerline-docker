@@ -12,7 +12,7 @@ setup(
     author_email     = 'adrian@morenomartinez.com',
     url              = 'https://github.com/adrianmo/powerline-docker',
     packages         = ['powerline_docker'],
-    install_requires = ['powerline-status', 'docker-py'],
+    install_requires = ['powerline-status', 'docker'],
     classifiers      = [
         'Environment :: Console',
         'Intended Audience :: Developers',

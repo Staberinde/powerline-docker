@@ -1,7 +1,7 @@
 # vim:fileencoding=utf-8:noet
 from powerline.segments import Segment, with_docstring
 from requests.exceptions import ConnectionError
-from docker import Client, tls
+from docker import DockerClient, TLSConfig
 
 
 DOCKER_STATUSES = ('running', 'paused', 'exited', 'restarting')
@@ -63,12 +63,12 @@ class DockerSegment(Segment):
         tls_config = None
 
         if use_tls:
-            tls_config = tls.TLSConfig(
+            tls_config = TLSConfig(
                 client_cert=(client_cert, client_key),
                 verify=ca_cert
             )
 
-        self.cli = Client(base_url=base_url, timeout=timeout, tls=tls_config)
+        self.cli = DockerClient(base_url=base_url, timeout=timeout, tls=tls_config)
 
         try:
             statuses = self.get_statuses_count()
