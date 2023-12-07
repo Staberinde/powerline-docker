@@ -1,7 +1,7 @@
 # vim:fileencoding=utf-8:noet
 from powerline.segments import Segment, with_docstring
 from requests.exceptions import ConnectionError
-from docker import DockerClient, TLSConfig
+from docker import APIClient, TLSConfig
 
 
 DOCKER_STATUSES = ('running', 'paused', 'exited', 'restarting')
@@ -68,7 +68,7 @@ class DockerSegment(Segment):
                 verify=ca_cert
             )
 
-        self.cli = DockerClient(base_url=base_url, timeout=timeout, tls=tls_config)
+        self.cli = APIClient(base_url=base_url, timeout=timeout, tls=tls_config)
 
         try:
             statuses = self.get_statuses_count()
